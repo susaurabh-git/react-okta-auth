@@ -1,11 +1,8 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import oktaAuthClient from "../../utils/oktaAuthClient";
 
 const MultiFactorVerify = (props) => {
-    const dispatch = useDispatch();
-    let history = useHistory();
     const silentSignIn = (sessionToken) => {
         return oktaAuthClient.token.getWithoutPrompt({ scopes: ['openid'], sessionToken })
             .then(({ tokens }) => {
