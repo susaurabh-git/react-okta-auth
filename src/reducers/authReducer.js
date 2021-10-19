@@ -1,4 +1,4 @@
-import { LOGIN, UPDATE } from "../actions/authAction";
+import { UPDATE } from "../actions/authAction";
 const initialState = {};
 
 const authReducer = (state = initialState, action) => {
@@ -10,33 +10,7 @@ const authReducer = (state = initialState, action) => {
         transaction: action.payload,
       };
     }
-    case `${LOGIN}`: {
-      return {
-        ...state,
-        status: "Login",
-        transaction: action.payload,
-      };
-    }
-    case `${LOGIN}_PENDING`: {
-      return {
-        ...state,
-        status: "Login_Pending",
-      };
-    }
-    case `${LOGIN}_FULFILLED`: {
-      return {
-        ...state,
-        status: "Login_Fulfilled",
-        transaction: action.payload,
-      };
-    }
-    case `${LOGIN}_REJECTED`: {
-      return {
-        ...state,
-        status: "Login_Rejected",
-        error: action.payload,
-      };
-    }
+
     default:
       return state;
   }
