@@ -1,21 +1,23 @@
 import React, { useState } from "react";
+import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { authAction } from '../../actions/authAction'
 import oktaAuthClient from "../../utils/oktaAuthClient";
 
 const SignInForm = (props) => {
-  const [sessionToken, setSessionToken] = useState();
+  // const [sessionToken, setSessionToken] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // props.actions.login(username, password);
     oktaAuthClient
       .signInWithCredentials({ username, password })
       .then((transaction) => {
         if (transaction.status === "MFA_REQUIRED") {
-          props.actions.update(transaction);
+          dispatch(authAction.update(transaction))
           history.push("/select");
         }
       });
@@ -29,10 +31,10 @@ const SignInForm = (props) => {
     setPassword(e.target.value);
   };
 
-  if (sessionToken) {
-    // Hide form while sessionToken is converted into id/access tokens
-    return null;
-  }
+  // if (sessionToken) {
+  //   // Hide form while sessionToken is converted into id/access tokens
+  //   return null;
+  // }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,4 +55,8 @@ const SignInForm = (props) => {
     </form>
   );
 };
-export default SignInForm;
+const mapStateToProps = state => {
+  const { transaction } = state.authReducer;
+  return { transaction };
+}
+export default connect(mapStateToProps, null)(SignInForm);
