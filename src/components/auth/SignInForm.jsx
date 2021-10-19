@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { useOktaAuth } from "@okta/okta-react";
+import { useHistory } from "react-router-dom";
+import oktaAuthClient from "../../utils/oktaAuthClient";
 
-const SignInForm = () => {
-  const { oktaAuth } = useOktaAuth();
+const SignInForm = (props) => {
   const [sessionToken, setSessionToken] = useState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    oktaAuth
+    // props.actions.login(username, password);
+    oktaAuthClient
       .signInWithCredentials({ username, password })
-      .then((res) => {
-        const sessionToken = res.sessionToken;
-        setSessionToken(sessionToken);
-        // sessionToken is a one-use token, so make sure this is only called once
-        oktaAuth.signInWithRedirect({ sessionToken });
-      })
-      .catch((err) => console.log("Found an error", err));
+      .then((transaction) => {
+        if (transaction.status === "MFA_REQUIRED") {
+          props.actions.update(transaction);
+          history.push("/select");
+        }
+      });
   };
 
   const handleUsernameChange = (e) => {

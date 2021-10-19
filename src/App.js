@@ -1,18 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import AppWithRouterAccess from "./AppWithRouterAccess";
+import { Router } from "react-router-dom";
+import Main from "./components/Main";
 import Navbar from "./components/layout/Navbar";
+import history from "./utils/history";
 
 const App = () => {
   return (
-    <div>
+    <>
       <div className="container">
-        <Router>
+        <Router history={history}>
           <Navbar />
-          <AppWithRouterAccess />
+          <Main />
         </Router>
       </div>
-    </div>
+    </>
   );
 };
 
