@@ -35,18 +35,15 @@ const MultiFactorSelect = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       {factors.map((factor, index) =>
-        <div key={`div+index`}>
-          <input
-            type="radio"
-            value={index}
-            onChange={handleFactorChange}
-          />
-          <label>
+        <div class="form-group form-check" key={`div+index`}>
+          <input class="form-check-input" type="radio" id={`radio+index`} value={index} onChange={handleFactorChange} />
+          <label class="form-check-label" for={`radio+index`}>
             {getFactorValue(factor)}
           </label>
+          <small id="passwordHelp" class="form-text text-muted">&nbsp;</small>
         </div>
       )}
-      <input id="submit" type="submit" value="Submit" />
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   );
 };

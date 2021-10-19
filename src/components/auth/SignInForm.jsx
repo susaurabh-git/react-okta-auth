@@ -36,25 +36,20 @@ const SignInForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </label>
-      <input id="submit" type="submit" value="Submit" />
+
+      <div class="form-group">
+        <label for="username">Email address</label>
+        <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" value={username}
+          onChange={handleUsernameChange} />
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" value={password}
+          onChange={handlePasswordChange} />
+        <small id="passwordHelp" class="form-text text-muted">&nbsp;</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   );
 };

@@ -33,14 +33,12 @@ const MultiFactorVerify = (props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Code
-            </label>
-            <input
-                id="code"
-                type="text"
-            />
-            <input id="submit" type="submit" value="Submit" />
+            <div class="form-group">
+                <label for="code">Code</label>
+                <input type="code" class="form-control" id="code" aria-describedby="codeHelp" placeholder="Enter OTP code" />
+                <small id="codeHelp" class="form-text text-muted">Never share your OTP with anyone else.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     );
 };
