@@ -30,8 +30,8 @@ const Main = (props) => {
       <Navbar />
       <Route exact path='/' component={Home} />
       <SecureRoute path='/protected' component={Welcome} />
-      <Route path='/login' render={() => <SignIn actions={props.actions} />} />
-      <Route path='/login/callback' component={LoginCallback} />
+      <Route exact path='/login' component={SignIn} />
+      <Route exact path='/login/callback' component={LoginCallback} />
       <Route exact path='/select' component={MultiFactorSelect} />
       <Route exact path='/verify' component={MultiFactorVerify} />
 
