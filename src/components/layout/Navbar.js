@@ -49,6 +49,11 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/protected">
+                Secure
+              </Link>
+            </li>
           </ul>
         </div>
         <form className="form-inline">{button}</form>

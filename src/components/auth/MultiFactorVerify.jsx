@@ -6,7 +6,6 @@ const MultiFactorVerify = (props) => {
     const silentSignIn = (sessionToken) => {
         return oktaAuthClient.token.getWithoutPrompt({ scopes: ['openid'], sessionToken })
             .then(({ tokens }) => {
-                oktaAuthClient.setOriginalUri('/');
                 return oktaAuthClient.handleLoginRedirect(tokens);
             })
             .catch((e) => {

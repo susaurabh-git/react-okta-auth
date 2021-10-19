@@ -12,9 +12,11 @@ const Home = () => {
 
   const notLoggedInMessage = !authState.isAuthenticated ?
     <div class="alert alert-primary" role="alert">
-      This is a public page, please login to go to secure page.
+      This is a public page, please login to go to <Link to="/protected">Secure</Link> page.
     </div> :
-    ''
+    <div class="alert alert-primary" role="alert">
+      You are logged in.
+    </div>
     ;
 
   return (
@@ -23,6 +25,7 @@ const Home = () => {
         Welcome to Okta Auth Integration App using ReactJS.
       </div>
       {notLoggedInMessage}
+
     </>
   );
 };
