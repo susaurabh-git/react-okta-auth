@@ -12,6 +12,8 @@ import MultiFactorSelect from './auth/MultiFactorSelect';
 import MultiFactorVerify from './auth/MultiFactorVerify';
 import Welcome from './view/Welcome';
 import oktaAuthClient from '../utils/oktaAuthClient'
+import Navbar from "./layout/Navbar";
+
 
 const Main = (props) => {
   const history = useHistory();
@@ -25,6 +27,7 @@ const Main = (props) => {
 
   return (
     <Security oktaAuth={oktaAuthClient} onAuthRequired={onAuthRequired} restoreOriginalUri={restoreOriginalUri}>
+      <Navbar />
       <Route exact path='/' component={Home} />
       <SecureRoute path='/protected' component={Welcome} />
       <Route path='/login' render={() => <SignIn actions={props.actions} />} />

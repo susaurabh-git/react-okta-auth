@@ -10,16 +10,20 @@ const Home = () => {
     return <div>Loading...</div>;
   }
 
-  const button = authState.isAuthenticated ?
-    <button onClick={() => {oktaAuth.signOut()}}>Logout</button> :
-    <button onClick={() => {history.push('/login')}}>Login</button>;
+  const notLoggedInMessage = !authState.isAuthenticated ?
+    <div class="alert alert-primary" role="alert">
+      This is a public page, please login to go to secure page.
+    </div> :
+    ''
+    ;
 
   return (
-    <div>
-      <Link to='/'>Home</Link><br/>
-      <Link to='/protected'>Welcome</Link><br/>
-      {button}
-    </div>
+    <>
+      <div class="alert alert-primary" role="alert">
+        Welcome to Okta Auth Integration App using ReactJS.
+      </div>
+      {notLoggedInMessage}
+    </>
   );
 };
 export default Home;
